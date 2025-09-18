@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aviya's Electro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    /* Hero Banner */
+    header.hero {
+      background: linear-gradient(rgba(231,84,128,0.6), rgba(231,84,128,0.6)), 
+                  url('https://via.placeholder.com/1200x400') center/cover no-repeat;
+      text-align: center;
+      color: white;
+      padding: 5rem 2rem;
+    }
+    header.hero h1 {
+      font-size: 3rem;
+      margin: 0;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+    header.hero p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+
+    /* Navigation Tabs */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      background: #fce4ec;
+      padding: 0.8rem;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav button {
+      background: #fff;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      color: #555;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+    nav button.active, nav button:hover {
+      background: #e75480;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    /* Layout: Main content + Sidebar */
+    .layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      gap: 2rem;
+    }
+    main {
+      flex: 2;
+    }
+    aside {
+      flex: 1;
+      position: sticky;
+      top: 6rem; /* stays visible while scrolling */
+      align-self: flex-start;
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      height: fit-content;
+    }
+
+    /* Section Cards */
+    section {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.5s ease;
+      display: none;
+    }
+    section.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Placeholder Image */
+    .placeholder {
+      width: 100%;
+      height: 200px;
+      background: #ddd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #666;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    h2 {
+      color: #e75480;
+      margin-top: 0;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      background: linear-gradient(135deg, #f8bbd0, #fce4ec);
+      color: #444;
+      font-size: 0.9rem;
+      margin-top: 3rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .layout {
+        flex-direction: column;
+      }
+      aside {
+        position: relative;
+        top: auto;
+        margin-top: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <header class="hero">
+    <h1>Aviya's Electro</h1>
+    <p>Professional Electrolysis Hair Removal Services</p>
+  </header>
+
+  <!-- Navigation Tabs -->
+  <nav>
+    <button class="active" onclick="showTab('about', this)">About</button>
+    <button onclick="showTab('services', this)">Services & Prices</button>
+    <button onclick="showTab('contact', this)">Contact</button>
+  </nav>
+
+  <!-- Layout with Main + Sidebar -->
+  <div class="layout">
+    <!-- Main Content -->
+    <main>
+      <section id="about" class="active">
+        <div class="placeholder">Picture Placeholder</div>
+        <p>
+          Welcome to Aviya’s Electro — where precision meets care. Electrolysis is the
+          only FDA-approved permanent hair removal method. We provide a safe, comfortable,
+          and professional environment for every client.
+        </p>
+      </section>
+
+      <section id="services">
+        <h2>Services & Prices</h2>
+        <ul>
+          <li>Consultation – [Your text here]</li>
+          <li>15 minutes – [Price]</li>
+          <li>30 minutes – [Price]</li>
+          <li>60 minutes – [Price]</li>
+        </ul>
+      </section>
+
+      <section id="contact">
+        <h2>Contact Details</h2>
+        <p>[Phone Number]</p>
+        <p>[Email Address]</p>
+        <p>[Business Address]</p>
+        <div class="placeholder">Map / Picture Placeholder</div>
+      </section>
+    </main>
+
+    <!-- Sidebar (About Aviya) -->
+    <aside>
+      <div class="placeholder">Aviya's Picture</div>
+      <h2>About Aviya</h2>
+      <p>
+        Aviya is a certified electrologist passionate about helping people achieve smooth,
+        hair-free skin with care and precision. She brings years of expertise and a gentle
+        touch to every treatment.
+      </p>
+    </aside>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    © <span id="year"></span> Aviya's Electro. All rights reserved.
+  </footer>
+
+  <!-- Script -->
+  <script>
+    function showTab(id, btn) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      btn.classList.add('active');
+    }
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
